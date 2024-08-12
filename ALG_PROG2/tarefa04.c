@@ -24,6 +24,7 @@ void copiar_cebolinha(char original[], char nova[]) {
     nova[i] = novat[i];
     i = i+1;
   }
+  nova[i] = '\0';
 }
 
 int main() {
