@@ -21,6 +21,7 @@ int main() {
                 anterior[c] = lingua[c];
                 c++;
             }
+            anterior[c] = '\0';
             c = 0;
        }
        if(mesma == 1){
