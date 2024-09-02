@@ -1,0 +1,77 @@
+void troca(int *a, int *b)
+{
+  int aux;
+  aux = *a;
+  *a = *b;
+  *b = aux;
+}
+
+void bubblesort(int n, int v[])
+{
+  int i, j;
+  for (i = n - 1; i > 0; i--)
+    for (j = 0; j < i; j++)
+      if (v[j] > v[j+1])
+	troca(&v[j], &v[j+1]);
+}
+
+void selectionsort(int n, int v[])
+{
+  int i, j, min;
+  for (i = 0; i < n - 1; i++) {
+    min = i;
+    for (j = i+1; j < n; j++)
+      if (v[j] < v[min])
+	min = j;
+    troca(&v[i], &v[min]);
+  }
+}
+
+void insertionsort(int n, int v[])
+{
+  int i, j, x;
+  for (i = 1; i < n; i++) {
+    x = v[i];
+    for (j = i - 1; j >= 0 && v[j] > x; j--)
+      v[j+1] = v[j];
+    v[j+1] = x;
+  }
+}
+
+
+1. Que acontece se trocarmos a realação i > 0 pela relação i >= 0 no código da
+função bubblesort ? Que acontece se trocarmos j < i por j <= i ?
+R1: A unica alteração seria que o for de fora executaria uma vez a mais, sem executar o for interno
+R2: O for interno executaria uma vez a mais, e na primeira execução, tentaria trocar o vetor com uma posição inexistente
+
+
+2. Troque a relação v[j] > v[j + 1] pela relação v[j] >= v[j + 1] no código
+da função trocas_sucessivas . A nova função continua produzindo uma
+ordenação crescente de v[0..n − 1]?
+R: Sim
+
+3. Escreva uma versão recursiva do método de ordenação por trocas sucessivas.
+Diego Rubert (FACOM) Ordenação - métodos elementares Algoritmos e Programação II 13 / 16
+Exercícios
+
+4. Que acontece se trocarmos i = 0 por i = 1 no código da função selecao ?
+Que acontece se trocarmos i < n-1 por i < n ?
+
+5. Troque v[j] < v[min] por v[j] <= v[min] no código da função selecao . A
+nova função continua produzindo uma ordenação crescente de v[0..n − 1]?
+
+6. Escreva uma versão recursiva do método de ordenação por seleção.
+
+7. No código da função insercao , troque v[j] > x por v[j] >= x . A nova função
+continua produzindo uma ordenação crescente de v[0..n − 1]?
+
+8. No código da função insercao , que acontece se trocarmos i = 1 por i = 0 ?
+Que acontece se trocarmos v[j+1] = x por v[j] = x ?
+
+9. Escreva uma versão recursiva do método de ordenação por inserção.
+
+10. Escreva uma função que rearranje um vetor v[0..n − 1] de modo que ele fique em
+ordem estritamente crescente.
+
+11. Escreva uma função que permute os elementos de um vetor v[0..n − 1] de modo que
+eles fiquem em ordem decrescente.
