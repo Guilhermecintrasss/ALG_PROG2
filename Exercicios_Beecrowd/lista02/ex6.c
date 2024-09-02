@@ -23,6 +23,7 @@ int main() {
             }
             anterior[c] = '\0';
             c = 0;
+            c2 = 0;
        }
        if(mesma == 1){
             printf("ingles\n"); 
