@@ -4,7 +4,7 @@
 // strcmp --> compara uma string com a outra seguindo a ordem alfabetica (-1 caso a primeira seja primeira, 1 caso a segunda seja primeira, 0 caso iguais)
 #define MAX 4
 
-void troca(int *a, int *b);
+void troca(char a[], char b[]);
 void bubblesort(int n, int v[]);
 
 
@@ -20,9 +20,9 @@ int main(void)
   return 0;
 }
 
-void troca(int *a, int *b)
+void troca(char a[], char b[])
 {
-  int aux;
+  char aux[MAX];
   strcpy(aux,a);
   strcpy(a,b);
   strcpy(b,aux);
