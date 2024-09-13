@@ -10,6 +10,44 @@ void bubblesort(int n, int v[]);
 void selectionsort(int n, int v[]);
 void insertionsort(int n, int v[]);
 
+int separa_aleatorio(int p, int r, int v[MAX])
+{
+int x, i, j,t;
+t = r-p+1; // tamanho do vetor
+x = v[p+rand()%t];
+i = p - 1;
+j = r + 1;
+while (i < j) {
+do {
+j--;
+} while (v[j] > x);
+do {
+i++;
+} while (v[i] < x);
+if (i < j)
+troca(&v[i], &v[j]);
+}
+return j;
+}
+
+int separa(int p, int r, int v[MAX])
+{
+int x, i, j;
+x = v[p];
+i = p - 1;
+j = r + 1;
+while (i < j) {
+do {
+j--;
+} while (v[j] > x);
+do {
+i++;
+} while (v[i] < x);
+if (i < j)
+troca(&v[i], &v[j]);
+}
+return j;
+}
 
 int main(void)
 {
@@ -57,6 +95,7 @@ int main(void)
   insertionsort(n, tmp);
   fim = clock();
   printf("INSERTION: %g segundos\n", (fim - inicio) / (float) CLOCKS_PER_SEC);
+  
 
   return 0;
 }
