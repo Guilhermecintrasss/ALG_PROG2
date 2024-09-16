@@ -1,0 +1,17 @@
+ls
+cd pasta
+gcc -Wall -pedantic -std=c99 -o programa -lm programa.c
+(programa é o nome do programa)
+
+Para ler dados de um arquivo, ao invés de um scanf
+ prompt$ ./programa arquivo entrada <
+
+
+ Como manipular um arquivo explicitamente em um programa?:
+    FILE *f; --> f é um ponteiro que aponta pra uma posição do arquivo.
+    
+    f = fopen("arquivo.txt","tipo") --> tipo = r ou w ou a (r = read, w = write, a = append)
+        ! lembrando que o modo write cria um vetor sempre, se ele já existir, ele apenas substitui pelos novos dados do write.
+    outros tipos r+ --> permite leitura e write
+    w+ --> permite write e leitura
+    a+ --> permite append e leitura

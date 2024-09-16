@@ -1,0 +1,56 @@
+não tem um espaço reservado pro registro, o registro é um grupo de variaveis na memoria, serve para organizar programas, já que quanto
+mais dados vao sendo adicionados, pior fica a organização desses dados
+
+exemplo:
+ao inves de passar os dados assim, criando 3 vetores com 100 posições
+int idade i[100]
+int altura a[100]
+char tipos t[100]
+vamos passar apenas um vetor de registros com 100 posições, armazenando 3 dados em cada
+
+Como criar e declarar registros?
+
+    forma1:
+        struct meu-tipo{
+            variaveis;
+        }; 
+
+        struct meu-tipo r;
+
+    forma 2:
+        typedef struct{
+            variaveis;
+        } meu-tipo;
+
+        meu-tipo r; --> cria o registro r
+
+exemplo:
+    typedef struct{
+        int idade;
+        float altura;
+        char tipos;
+    } pessoa;
+
+    pessoa a; --> pessoa é um tipo de variavel, assim como inteiro
+    a.idade = idade;
+    a.altura = altura;
+    a.tipo = tipo;
+    
+    pessoa pessoas[3] --> vetor do agrupamento das variaveis [idade,altura,tipo ; idade,altura,tipo ; idade,altura,tipo]
+
+    typedef enum{
+        copas; --> se entende como 0
+        espadas; --> se entende como 1
+        ouros; --> se entende como 2
+        paus; --> se entende como 3
+    } naipe;
+    esse codigo nao declara o tipo dentro, mas ele é como se fosse um inteiro, mas na hora de referenciar voce pode usar o nome
+
+    naipe n;
+    n = espadas; --> mesma coisa que n = 1;
+    if(n == espadas){ --> mesma coisa que se n == 1;
+        printf("espadas");
+    }
+
+pessoa[1].a --> "Pegue no vetor de registro 'pessoa', a posição 1, o dado a (que seria a altura)
+
