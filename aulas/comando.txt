@@ -58,3 +58,5 @@ Para ler dados de um arquivo, ao invés de um scanf
      seek_end --> a partir da posição final
 
      exemplo: fseek(f,2,seek_set) --> vai andar 2 posições a partir do inicio do arquivo
+
+     void rewind(f) --> faz o ponteiro voltar pro começo do arquivo
