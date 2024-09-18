@@ -38,6 +38,8 @@ exemplo:
     
     pessoa pessoas[3] --> vetor do agrupamento das variaveis [idade,altura,tipo ; idade,altura,tipo ; idade,altura,tipo]
 
+    pessoa[1].altura --> "Pegue no vetor de registro 'pessoa', a posição 1, o dado altura
+    
     typedef enum{
         copas; --> se entende como 0
         espadas; --> se entende como 1
@@ -52,5 +54,5 @@ exemplo:
         printf("espadas");
     }
 
-pessoa[1].a --> "Pegue no vetor de registro 'pessoa', a posição 1, o dado a (que seria a altura)
+
 
