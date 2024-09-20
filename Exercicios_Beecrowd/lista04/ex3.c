@@ -7,21 +7,21 @@ void troca(int *a, int *b)
     *a = *b;
     *b = aux;
 }
-void insertionsort(int n, int v[])
+void insertionsort(int p, int n, int v[]) // [4,6,5,3,7]
 {
     int i, j, x;
-    for (i = 1; i < n; i++) {
-        x = v[i];
-        for (j = i - 1; j >= 0 && v[j] > x; j--)
+    for (i = p+1; i <= n; i++) {
+        x = v[i]; //[3]
+        for (j = i - 1; j >= 0 && v[j] < x; j--) //[5,5,7] [3,5,7]
             v[j+1] = v[j];
         v[j+1] = x;
     }
 }
-int separa_par(int p, int r, int v[])
+int separa_par(int p, int r, int v[]) // 0 e 5 [3,4,5,6,7]
 {
     int i, j;
-    i = p - 1;
-    j = r + 1;
+    i = p - 1;  // -1
+    j = r + 1; // 6
     while (i < j) {
     do {
     j--;
@@ -30,7 +30,7 @@ int separa_par(int p, int r, int v[])
     i++;
     } while (v[i]%2 == 0);
     if (i < j)
-    troca(&v[i], &v[j]);
+    troca(&v[i], &v[j]); //[6,4,5,3,7] e [6,5,4,3,7]
     }
     return j;
 }
@@ -85,13 +85,13 @@ int main() {
     for(int i = 0; i<n ; i++){
         scanf("%d",&numeros[i]);
     }
-    j = separa_par(0,n,numeros);
-    
-    mergesort(0,j,numeros);
-    mergesort(j+1,n,numeros);
+    j = separa_par(0,n-1,numeros); // vai até a posição n, logo tem que ser até n-1
+
+    mergesort(0,j+1,numeros); // vai até a posição final-1, logo tem que ser até j+1, para ir até j
+    insertionsort(j+1,n,numeros); // aqui vai de j+1 até n-1 (ele sempre vai até a posição final-1)
 
     for(int i = 0; i<n ; i++){
         printf("%d\n",numeros[i]);
     }
-    
+    // ta dando errado
 }
