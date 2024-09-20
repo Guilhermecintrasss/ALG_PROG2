@@ -10,11 +10,10 @@ void troca(int *a, int *b)
     *b = aux;
 }
 
-void separa_aleatorio(int p, int r, int v[])
+int separa_aleatorio(int p, int r, int v[])
 {
-int x, i, j,t;
-t = r-p+1; // tamanho do vetor
-x = v[p+rand()%t];
+int x, i, j;
+x = p;
 i = p - 1;
 j = r + 1;
 while (i < j) {
@@ -27,19 +26,19 @@ i++;
 if (i < j)
 troca(&v[i], &v[j]);
 }
-
+return j;
 }
 
 int main() {
-    int codigos[1000],n,j;
+    int n,j;
     scanf("%d",&n);
-
+    int codigos[n];
     
     for(int i = 0; i<n ; i++){
         scanf("%d",&codigos[i]);
     }
     
-    separa_aleatorio(0,1000,codigos);
+    j = separa_aleatorio(0,n,codigos);
 
     for(int i = 0; i<n ; i++){
         printf("%d\n",codigos[i]);
