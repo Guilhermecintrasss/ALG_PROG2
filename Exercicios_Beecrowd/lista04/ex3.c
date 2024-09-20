@@ -7,13 +7,13 @@ void troca(int *a, int *b)
     *a = *b;
     *b = aux;
 }
-void insertionsort(int p, int n, int v[]) // [4,6,5,3,7]
+void insertionsort(int p, int n, int v[]) // [4,2,3,1,5] p = 2, n = 5
 {
     int i, j, x;
-    for (i = p+1; i <= n; i++) {
-        x = v[i]; //[3]
-        for (j = i - 1; j >= 0 && v[j] < x; j--) //[5,5,7] [3,5,7]
-            v[j+1] = v[j];
+    for (i = p+1; i < n; i++) { 
+        x = v[i];
+        for (j = i - 1; j >= p && v[j] < x; j--) // j>=p, pois o j anda de trás pra frente, e tem que parar no p
+            v[j+1] = v[j]; 
         v[j+1] = x;
     }
 }
@@ -89,7 +89,6 @@ int main() {
 
     mergesort(0,j+1,numeros); // vai até a posição final-1, logo tem que ser até j+1, para ir até j
     insertionsort(j+1,n,numeros); // aqui vai de j+1 até n-1 (ele sempre vai até a posição final-1)
-
     for(int i = 0; i<n ; i++){
         printf("%d\n",numeros[i]);
     }
