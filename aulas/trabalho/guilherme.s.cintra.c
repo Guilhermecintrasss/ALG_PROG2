@@ -145,6 +145,114 @@ t_valor_m valor;
 
 */
 #include <stdio.h>
+ int royal_flush(int v[]){
+    for(int i = 10; i<15; i++){
+        if(v[i-10].valor != i || v[i-10].t_naipe != v[0].t_naipe){
+            return -1;
+        }
+    }
+    return 1;
+ }
+ int straight_flush(int v[]){
+    for(int i = 1; i<5; i++){
+        if(v[i].valor != v[i-1].valor+1 || v[i].t_naipe != v[0].t_naipe){
+            return -1;
+        }
+    }
+    return 1;
+ }
+ int quadra(int v[]){
+    int c = 0;
+    for(int i = 1; i<5; i++){
+        if(v[i].valor == v[i-1].valor){
+            c++;
+        } else{
+            if(c != 0 || c != 3){
+                return -1; // Para nao dar conflito com o full_house, ja que o resultado de comparações certas é o mesmo
+            }
+        }
+    }
+    if(c == 3){
+        return 1;
+    } else {
+        return -1;
+    }
+ }
+ int full_house(int v[]){
+    int c = 0;
+    for(int i = 1; i<5; i++){
+        if(v[i].valor == v[i-1].valor){
+            c++;
+        } else{
+            if(c != 1 || c != 2){
+                return -1; // Para nao dar conflito com a quadra
+            }
+        }
+    }
+    if(c == 3){
+        return 1;
+    } else {
+        return -1;
+    }
+ }
+ int flush(int v[]){
+     for(int i = 1; i<5; i++){
+        if(v[i].t_naipe != v[0].t_naipe){
+            return -1;
+        }
+    }
+    return 1;
+ }
+ int sequencia(int v[]){
+     for(int i = 1; i<5; i++){
+        if(v[i].valor != v[i-1].valor+1){
+            return -1;
+        }
+    }
+    return 1;
+ }
+ int trinca(int v[]){ // tenho que achar um jeito de nao dar conflito com os pares
+    int c = 0;
+    for(int i = 1; i<5; i++){
+        if(v[i].valor == v[i-1].valor){
+            c++;
+        }
+    }
+    if(c == 2){
+        return 1;
+    } else {
+        return -1;
+    }
+ }
+ int pares(int v[]){ // dando conflito com trinca
+     int c = 0;
+    for(int i = 1; i<5; i++){
+        if(v[i].valor == v[i-1].valor){
+            c++;
+        }
+    }
+    if(c == 2){
+        return 1;
+    } else {
+        return -1;
+    }
+ }
+ int par(int v[]){
+     int c = 0;
+    for(int i = 1; i<5; i++){
+        if(v[i].valor == v[i-1].valor){
+            c++;
+        }
+    }
+    if(c == 1){
+        return 1;
+    } else {
+        return -1;
+    }
+ }
+ int carta_alta(int v[]){ // vai retornar o valor da carta mais alta
+    return v[0];
+ }
 
  typedef enum 
    {
