@@ -254,6 +254,30 @@ t_valor_m valor;
     return v[0];
  }
 
+ int encontra_mao(int v[]{ // encontra a mao, quanto mais forte a mao, maior o numero inteiro que vai retornar
+ // caso seja a mao de maior carta, retorna -1, e depois é necessario chamar a funcao de maior carta
+    int mao = -1;
+    if(royal_flush(v) == 1)
+        mao = 9;
+    else if(straight_flush(v) == 1)
+        mao = 8;
+    else if(quadra(v) == 1)
+        mao = 7;
+    else if(full_house(v) == 1)
+        mao = 6;
+    else if(flush(v) == 1)
+        mao = 5;
+    else if(sequencia(v) == 1)
+        mao = 4;
+    else if(trinca(v) == 1)
+        mao = 3;
+    else if(pares(v) == 1)
+        mao = 2;
+    else if(par(v) == 1)
+        mao = 1;
+    return mao; 
+ })
+
  typedef enum 
    {
         COPAS = 'C',
