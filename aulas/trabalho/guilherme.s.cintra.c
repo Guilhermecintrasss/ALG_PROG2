@@ -145,9 +145,23 @@ t_valor_m valor;
 
 */
 #include <stdio.h>
+typedef enum 
+   {
+        COPAS = 'C',
+        ESPADAS = 'E',
+        OUROS = 'O',
+        PAUS = 'P'
+    } t_naipe;
+
+    typedef struct 
+    {
+        short valor;
+        t_naipe naipe;
+    } t_carta;
+
  int royal_flush(int v[]){
     for(int i = 10; i<15; i++){
-        if(v[i-10].valor != i || v[i-10].t_naipe != v[0].t_naipe){
+        if(v[i-10].valor != i || v[i-10].naipe != v[0].naipe){
             return -1;
         }
     }
@@ -155,7 +169,7 @@ t_valor_m valor;
  }
  int straight_flush(int v[]){
     for(int i = 1; i<5; i++){
-        if(v[i].valor != v[i-1].valor+1 || v[i].t_naipe != v[0].t_naipe){
+        if(v[i].valor != v[i-1].valor+1 || v[i].naipe != v[0].naipe){
             return -1;
         }
     }
@@ -197,7 +211,7 @@ t_valor_m valor;
  }
  int flush(int v[]){
      for(int i = 1; i<5; i++){
-        if(v[i].t_naipe != v[0].t_naipe){
+        if(v[i].naipe != v[0].naipe){
             return -1;
         }
     }
@@ -254,43 +268,30 @@ t_valor_m valor;
     return v[0];
  }
 
- int encontra_mao(int v[]{ // encontra a mao, quanto mais forte a mao, maior o numero inteiro que vai retornar
- // caso seja a mao de maior carta, retorna -1, e depois é necessario chamar a funcao de maior carta
+ int encontra_mao(int v[]){ 
     int mao = -1;
     if(royal_flush(v) == 1)
-        mao = 9;
+        mao = 23;
     else if(straight_flush(v) == 1)
-        mao = 8;
+        mao = 22;
     else if(quadra(v) == 1)
-        mao = 7;
+        mao = 21;
     else if(full_house(v) == 1)
-        mao = 6;
+        mao = 20;
     else if(flush(v) == 1)
-        mao = 5;
+        mao = 19;
     else if(sequencia(v) == 1)
-        mao = 4;
+        mao = 18;
     else if(trinca(v) == 1)
-        mao = 3;
+        mao = 17;
     else if(pares(v) == 1)
-        mao = 2;
+        mao = 16;
     else if(par(v) == 1)
-        mao = 1;
+        mao = 15;
+    else
+        mao = carta_alta(v);
     return mao; 
- })
-
- typedef enum 
-   {
-        COPAS = 'C',
-        ESPADAS = 'E',
-        OUROS = 'O',
-        PAUS = 'P'
-    } t_naipe;
-
-    typedef struct 
-    {
-        short valor;
-        t_naipe naipe;
-    } t_carta;
+ }
 
 int main() {
    
