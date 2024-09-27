@@ -303,7 +303,7 @@ int main() {
     for(int i = 0;i<k; i++){
         for(int c = 0; c<5; c++){
             scanf("%d %c", &cartas1[c].valor , &letra_naipe); // hu porque o tipo d nao ta dando certo
-            cartas1[c].naipe = letra_naipe;
+            cartas1[c].naipe = letra_naipe; // tenho que alterar a forma que ele le os valores, já que o valor pode ser uma letra e nao um inteiro
         }
     }
     for(int c = 0; c<5; c++){
