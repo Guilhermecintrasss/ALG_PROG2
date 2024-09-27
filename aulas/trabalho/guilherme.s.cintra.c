@@ -155,11 +155,11 @@ typedef enum
 
     typedef struct 
     {
-        short valor;
+        int valor;
         t_naipe naipe;
     } t_carta;
 
- int royal_flush(int v[]){
+ int royal_flush(t_carta v[]){
     for(int i = 10; i<15; i++){
         if(v[i-10].valor != i || v[i-10].naipe != v[0].naipe){
             return -1;
@@ -167,7 +167,7 @@ typedef enum
     }
     return 1;
  }
- int straight_flush(int v[]){
+ int straight_flush(t_carta v[]){
     for(int i = 1; i<5; i++){
         if(v[i].valor != v[i-1].valor+1 || v[i].naipe != v[0].naipe){
             return -1;
@@ -175,7 +175,7 @@ typedef enum
     }
     return 1;
  }
- int quadra(int v[]){
+ int quadra(t_carta v[]){
     int c = 0;
     for(int i = 1; i<5; i++){
         if(v[i].valor == v[i-1].valor){
@@ -192,7 +192,7 @@ typedef enum
         return -1;
     }
  }
- int full_house(int v[]){
+ int full_house(t_carta v[]){
     int c = 0;
     for(int i = 1; i<5; i++){
         if(v[i].valor == v[i-1].valor){
@@ -209,7 +209,7 @@ typedef enum
         return -1;
     }
  }
- int flush(int v[]){
+ int flush(t_carta v[]){
      for(int i = 1; i<5; i++){
         if(v[i].naipe != v[0].naipe){
             return -1;
@@ -217,7 +217,7 @@ typedef enum
     }
     return 1;
  }
- int sequencia(int v[]){
+ int sequencia(t_carta v[]){
      for(int i = 1; i<5; i++){
         if(v[i].valor != v[i-1].valor+1){
             return -1;
@@ -225,7 +225,7 @@ typedef enum
     }
     return 1;
  }
- int trinca(int v[]){ // tenho que achar um jeito de nao dar conflito com os pares
+ int trinca(t_carta v[]){ // tenho que achar um jeito de nao dar conflito com os pares
     int c = 0;
     for(int i = 1; i<5; i++){
         if(v[i].valor == v[i-1].valor){
@@ -238,7 +238,7 @@ typedef enum
         return -1;
     }
  }
- int pares(int v[]){ // dando conflito com trinca
+ int pares(t_carta v[]){ // dando conflito com trinca
      int c = 0;
     for(int i = 1; i<5; i++){
         if(v[i].valor == v[i-1].valor){
@@ -251,7 +251,7 @@ typedef enum
         return -1;
     }
  }
- int par(int v[]){
+ int par(t_carta v[]){
      int c = 0;
     for(int i = 1; i<5; i++){
         if(v[i].valor == v[i-1].valor){
@@ -264,11 +264,11 @@ typedef enum
         return -1;
     }
  }
- int carta_alta(int v[]){ // vai retornar o valor da carta mais alta
+ int carta_alta(t_carta v[]){ // vai retornar o valor da carta mais alta
     return v[0];
  }
 
- int encontra_mao(int v[]){ 
+ int encontra_mao(t_carta v[]){ 
     int mao = -1;
     if(royal_flush(v) == 1)
         mao = 23;
