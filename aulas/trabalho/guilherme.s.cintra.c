@@ -265,7 +265,7 @@ typedef enum
     }
  }
  int carta_alta(t_carta v[]){ // vai retornar o valor da carta mais alta
-    return v[0];
+    return v[0].valor;
  }
 
  int encontra_mao(t_carta v[]){ 
