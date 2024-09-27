@@ -302,12 +302,12 @@ int main() {
     scanf("%d",&k);
     for(int i = 0;i<k; i++){
         for(int c = 0; c<5; c++){
-            scanf("%hu %c", &cartas1[c].valor , &letra_naipe); // hu porque o tipo d nao ta dando certo
+            scanf("%d %c", &cartas1[c].valor , &letra_naipe); // hu porque o tipo d nao ta dando certo
             cartas1[c].naipe = letra_naipe;
         }
     }
     for(int c = 0; c<5; c++){
-            printf("%hu %c", cartas1[c].valor , cartas1[c].naipe);
+            printf("%d %c", cartas1[c].valor , cartas1[c].naipe);
         }
 
     return 0;
