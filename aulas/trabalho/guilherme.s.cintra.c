@@ -360,10 +360,10 @@ int main() {
         mao1 = encontra_mao(cartas1);
         mao2 = encontra_mao(cartas2);
 
-        if(mao1>mao2){
+        if(mao1>mao2){ // falta converter os numeros para letras
             printf("1 ");
             for(int c = 0; c<5; c++){
-            printf("%d%c ", cartas1[c].valor , cartas1[c].naipe);
+            printf("%d%c ", cartas1[c].valor , cartas1[c].naipe); 
             }
         } else{
             for(int c = 0; c<5; c++){
