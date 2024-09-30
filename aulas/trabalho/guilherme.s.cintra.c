@@ -167,6 +167,22 @@ typedef enum
     }
     return 1;
  }
+ void troca(t_carta *a, t_carta *b)
+{
+  t_carta aux;
+  aux = *a;
+  *a = *b;
+  *b = aux;
+}
+ void bubblesort(int n, t_carta v[])
+{
+    int i, j;
+    for (i = n - 1; i > 0; i--)
+        for (j = 0; j < i; j++)
+            if (v[j].valor > v[j+1].valor)
+    troca(&v[j], &v[j+1]);
+}
+
  int straight_flush(t_carta v[]){
     for(int i = 1; i<5; i++){
         if(v[i].valor != v[i-1].valor+1 || v[i].naipe != v[0].naipe){
@@ -226,19 +242,24 @@ typedef enum
     return 1;
  }
  int trinca(t_carta v[]){ // tenho que achar um jeito de nao dar conflito com os pares
-    int c = 0;
+    int c = 0, aux = 0;
     for(int i = 1; i<5; i++){
         if(v[i].valor == v[i-1].valor){
             c++;
+        } else{
+            if(aux<c){
+                aux = c; // essa logica ajuda a definir a trinca
+            }
+            c = 0;
         }
     }
-    if(c == 2){
+    if(aux == 3){
         return 1;
     } else {
         return -1;
     }
  }
- int pares(t_carta v[]){ // dando conflito com trinca
+ int pares(t_carta v[]){ // dando conflito com trinca, porém nao altera o resultado pela ordem de chamada das funcoes.
      int c = 0;
     for(int i = 1; i<5; i++){
         if(v[i].valor == v[i-1].valor){
@@ -266,6 +287,21 @@ typedef enum
  }
  int carta_alta(t_carta v[]){ // vai retornar o valor da carta mais alta
     return v[0].valor;
+ }
+ void le_mao(char carta_letras[], t_carta v[],int c){
+    if(carta_letras[0] == 'J'){
+        v[c].valor = 11;
+    } else if(carta_letras[0] == 'Q' && carta_letras[1] == '\0'){
+        v[c].valor = 12;
+    } else if(carta_letras[0] == 'K' && carta_letras[1] == '\0'){
+        v[c].valor = 13;
+    } else if(carta_letras[0] == 'A' && carta_letras[1] == '\0'){
+        v[c].valor = 14;
+    } else if(carta_letras[0] == '1' && carta_letras[1] == '0'){
+        v[c].valor = 10;
+    } else{
+        v[c].valor = carta_letras[0] - '0';
+    }
  }
 
  int encontra_mao(t_carta v[]){ 
@@ -295,20 +331,47 @@ typedef enum
 
 int main() {
    
+    char carta_letras[2];
     t_carta cartas1[5],cartas2[5];
     int k;
     char letra_naipe;
+    int mao1,mao2;
 
     scanf("%d",&k);
     for(int i = 0;i<k; i++){
         for(int c = 0; c<5; c++){
-            scanf("%d %c", &cartas1[c].valor , &letra_naipe); // hu porque o tipo d nao ta dando certo
-            cartas1[c].naipe = letra_naipe; // tenho que alterar a forma que ele le os valores, já que o valor pode ser uma letra e nao um inteiro
+
+            scanf("%s %c", carta_letras , &letra_naipe);
+            cartas1[c].naipe = letra_naipe;
+            le_mao(carta_letras,cartas1,c);
+
+        }
+
+        for(int c = 0; c<5; c++){
+
+            scanf("%s %c", carta_letras , &letra_naipe);
+            cartas2[c].naipe = letra_naipe;
+            le_mao(carta_letras,cartas2,c);
+        }
+
+        bubblesort(5,cartas1);
+        bubblesort(5,cartas2);
+
+        mao1 = encontra_mao(cartas1);
+        mao2 = encontra_mao(cartas2);
+
+        if(mao1>mao2){
+            printf("1 ");
+            for(int c = 0; c<5; c++){
+            printf("%d%c ", cartas1[c].valor , cartas1[c].naipe);
+            }
+        } else{
+            for(int c = 0; c<5; c++){
+            printf("%d%c ", cartas2[c].valor , cartas2[c].naipe);
+            }
         }
     }
-    for(int c = 0; c<5; c++){
-            printf("%d %c", cartas1[c].valor , cartas1[c].naipe);
-        }
+
 
     return 0;
 }
