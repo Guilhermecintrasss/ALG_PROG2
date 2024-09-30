@@ -328,6 +328,23 @@ typedef enum
         mao = carta_alta(v);
     return mao; 
  }
+ char muda_letra(int carta){
+    if(carta == 11){
+        return 'J';
+    }
+    else if(carta == 12){
+        return 'Q';
+    }
+    else if(carta == 13){
+        return 'K';
+    }
+    else if(carta == 14){
+        return 'A';
+    }
+    else{
+
+    }
+ }
 
 int main() {
    
@@ -363,6 +380,7 @@ int main() {
         if(mao1>mao2){ // falta converter os numeros para letras
             printf("1 ");
             for(int c = 0; c<5; c++){
+            
             printf("%d%c ", cartas1[c].valor , cartas1[c].naipe); 
             }
         } else{
