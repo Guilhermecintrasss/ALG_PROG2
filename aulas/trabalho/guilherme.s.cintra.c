@@ -159,6 +159,18 @@ typedef enum
         t_naipe naipe;
     } t_carta;
 
+ int converte_naipe(char naipe){
+    if(naipe == OUROS)
+        return 1;
+    if(naipe == ESPADAS)
+        return 2;
+    if(naipe == COPAS)
+        return 3;
+    if(naipe == PAUS)
+        return 4;
+ };
+
+
  int royal_flush(t_carta v[]){
     for(int i = 10; i<15; i++){
         if(v[i-10].valor != i || v[i-10].naipe != v[0].naipe){
@@ -167,6 +179,7 @@ typedef enum
     }
     return 1;
  }
+
  void troca(t_carta *a, t_carta *b)
 {
   t_carta aux;
@@ -180,6 +193,15 @@ typedef enum
     for (i = n - 1; i > 0; i--)
         for (j = 0; j < i; j++)
             if (v[j].valor > v[j+1].valor)
+    troca(&v[j], &v[j+1]);
+}
+
+void bubblesort_naipe(int n, t_carta v[])
+{
+    int i, j;
+    for (i = n - 1; i > 0; i--)
+        for (j = 0; j < i; j++)
+            if (converte_naipe(v[j].naipe) > converte_naipe(v[j+1].naipe) && v[j].valor == v[j+1].valor)
     troca(&v[j], &v[j+1]);
 }
 
@@ -253,7 +275,8 @@ typedef enum
             c = 0;
         }
     }
-    if(aux == 3){
+
+    if(aux == 2){
         return 1;
     } else {
         return -1;
@@ -286,7 +309,7 @@ typedef enum
     }
  }
  int carta_alta(t_carta v[]){ // vai retornar o valor da carta mais alta
-    return v[0].valor;
+    return v[4].valor;
  }
  void le_mao(char carta_letras[], t_carta v[],int c){
     if(carta_letras[0] == 'J'){
@@ -301,6 +324,17 @@ typedef enum
         v[c].valor = 10;
     } else{
         v[c].valor = carta_letras[0] - '0';
+    }
+ }
+ void converte_letra(char *carta_letras, int valor){
+    if(valor == 11){
+        *carta_letras = 'J'; 
+    } else if(valor == 12){
+        *carta_letras = 'Q'; 
+    } else if(valor == 13){
+        *carta_letras = 'K'; 
+    } else if(valor == 14){
+        *carta_letras = 'A'; 
     }
  }
 
@@ -327,23 +361,6 @@ typedef enum
     else
         mao = carta_alta(v);
     return mao; 
- }
- char muda_letra(int carta){
-    if(carta == 11){
-        return 'J';
-    }
-    else if(carta == 12){
-        return 'Q';
-    }
-    else if(carta == 13){
-        return 'K';
-    }
-    else if(carta == 14){
-        return 'A';
-    }
-    else{
-
-    }
  }
 
 int main() {
@@ -372,21 +389,40 @@ int main() {
         }
 
         bubblesort(5,cartas1);
+        bubblesort_naipe(5,cartas1);
         bubblesort(5,cartas2);
+        bubblesort_naipe(5,cartas2);
 
         mao1 = encontra_mao(cartas1);
         mao2 = encontra_mao(cartas2);
 
-        if(mao1>mao2){ // falta converter os numeros para letras
+        if(mao1>mao2){ // 
             printf("1 ");
             for(int c = 0; c<5; c++){
-            
-            printf("%d%c ", cartas1[c].valor , cartas1[c].naipe); 
+            char carta_print = '*';
+            converte_letra(&carta_print,cartas1[c].valor);
+            if(carta_print == '*'){
+                 printf("%d %c ", cartas1[c].valor , cartas1[c].naipe); 
+            }
+            else{
+                 printf("%c %c ", carta_print , cartas1[c].naipe); 
+            }
+
+            }
+        } else if(mao1<mao2){
+            printf("2 ");
+            for(int c = 0; c<5; c++){
+            char carta_print = '*';
+            converte_letra(&carta_print,cartas2[c].valor);
+            if(carta_print == '*'){
+                 printf("%d %c ", cartas2[c].valor , cartas2[c].naipe); 
+            }
+            else{
+                 printf("%c %c ", carta_print , cartas2[c].naipe); 
+            }
             }
         } else{
-            for(int c = 0; c<5; c++){
-            printf("%d%c ", cartas2[c].valor , cartas2[c].naipe);
-            }
+            printf("E");
         }
     }
 
