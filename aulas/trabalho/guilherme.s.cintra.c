@@ -80,7 +80,7 @@ void bubblesort_naipe(int n, t_carta v[])
         if(v[i].valor == v[i-1].valor){
             c++;
         } else{
-            if(c != 0 || c != 3){
+            if(c != 0 && c != 3){
                 return -1; // Para nao dar conflito com o full_house, ja que o resultado de comparações certas é o mesmo
             }
         }
@@ -97,7 +97,7 @@ void bubblesort_naipe(int n, t_carta v[])
         if(v[i].valor == v[i-1].valor){
             c++;
         } else{
-            if(c != 1 || c != 2){
+            if(c != 1 && c != 2){
                 return -1; // Para nao dar conflito com a quadra
             }
         }
@@ -136,6 +136,10 @@ void bubblesort_naipe(int n, t_carta v[])
             c = 0;
         }
     }
+    if(aux<c){
+        aux = c; // essa logica ajuda a definir a trinca
+    }
+    printf("%d\n",aux);
 
     if(aux == 2){
         return 1;
@@ -256,11 +260,11 @@ int main() {
         // }
         // printf("\n");
         bubblesort_naipe(5,cartas1);
-        // for(int c = 0; c<5; c++){
+        for(int c = 0; c<5; c++){
 
-        //     printf("%d %c ", cartas1[c].valor , cartas1[c].naipe);
-        // }
-        // printf("\n \n");
+            printf("%d %c ", cartas1[c].valor , cartas1[c].naipe);
+        }
+        printf("\n \n");
         bubblesort(5,cartas2);
         // for(int c = 0; c<5; c++){
 
@@ -268,14 +272,15 @@ int main() {
         // }
         // printf("\n");
         bubblesort_naipe(5,cartas2);
-        // for(int c = 0; c<5; c++){
+        for(int c = 0; c<5; c++){
 
-        //     printf("%d %c ", cartas2[c].valor , cartas2[c].naipe);
-        // }
-        // printf("\n \n");
+            printf("%d %c ", cartas2[c].valor , cartas2[c].naipe);
+        }
+        printf("\n \n");
 
         mao1 = encontra_mao(cartas1);
         mao2 = encontra_mao(cartas2);
+        printf("mao1: %d / mao2: %d \n",mao1,mao2);
 
         // printf("****************************************** \n");
         if(mao1>mao2){ // 
