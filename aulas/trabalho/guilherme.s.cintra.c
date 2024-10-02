@@ -82,7 +82,7 @@ void bubblesort_naipe(int n, t_carta v[])
             c++;
         } else{
             if(c != 0 && c != 3){
-                return -1; // Para nao dar conflito com o full_house, ja que o resultado de comparações certas é o mesmo
+                return -1;
             }
         }
     }
@@ -99,7 +99,7 @@ void bubblesort_naipe(int n, t_carta v[])
             c++;
         } else{
             if(c != 1 && c != 2){
-                return -1; // Para nao dar conflito com a quadra
+                return -1;
             }
         }
     }
@@ -125,22 +125,21 @@ void bubblesort_naipe(int n, t_carta v[])
     }
     return 1;
  }
- int trinca(t_carta v[]){ // tenho que achar um jeito de nao dar conflito com os pares
+ int trinca(t_carta v[]){
     int c = 0, aux = 0;
     for(int i = 1; i<5; i++){
         if(v[i].valor == v[i-1].valor){
             c++;
         } else{
             if(aux<c){
-                aux = c; // essa logica ajuda a definir a trinca
+                aux = c;
             }
             c = 0;
         }
     }
     if(aux<c){
-        aux = c; // essa logica ajuda a definir a trinca
+        aux = c;
     }
-    printf("%d\n",aux);
 
     if(aux == 2){
         return 1;
@@ -148,7 +147,7 @@ void bubblesort_naipe(int n, t_carta v[])
         return -1;
     }
  }
- int pares(t_carta v[]){ // dando conflito com trinca, porém nao altera o resultado pela ordem de chamada das funcoes.
+ int pares(t_carta v[]){
      int c = 0;
     for(int i = 1; i<5; i++){
         if(v[i].valor == v[i-1].valor){
@@ -174,7 +173,7 @@ void bubblesort_naipe(int n, t_carta v[])
         return -1;
     }
  }
- int carta_alta(t_carta v[]){ // vai retornar o valor da carta mais alta
+ int carta_alta(t_carta v[]){
     return v[4].valor;
  }
  void le_mao(char carta_letras[], t_carta v[],int c){
@@ -261,10 +260,8 @@ int main() {
 
         mao1 = encontra_mao(cartas1);
         mao2 = encontra_mao(cartas2);
-        printf("mao1: %d / mao2: %d \n",mao1,mao2);
 
-        // printf("****************************************** \n");
-        if(mao1>mao2){ // 
+        if(mao1>mao2){
             printf("1 ");
             for(int c = 0; c<5; c++){
             char carta_print = '*';
@@ -296,9 +293,6 @@ int main() {
         } else{
             printf("E");
         }
-        printf("\n\n");
     }
-
-
     return 0;
 }
