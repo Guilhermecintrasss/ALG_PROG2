@@ -24,6 +24,7 @@ typedef enum
     if(naipe == PAUS)
         return 1;
     if(naipe == OUROS)
+
         return 2;
     if(naipe == COPAS)
         return 3;
@@ -254,29 +255,9 @@ int main() {
         }
 
         bubblesort(5,cartas1);
-        // for(int c = 0; c<5; c++){
-
-        //     printf("%d %c ", cartas1[c].valor , cartas1[c].naipe);
-        // }
-        // printf("\n");
         bubblesort_naipe(5,cartas1);
-        for(int c = 0; c<5; c++){
-
-            printf("%d %c ", cartas1[c].valor , cartas1[c].naipe);
-        }
-        printf("\n \n");
         bubblesort(5,cartas2);
-        // for(int c = 0; c<5; c++){
-
-        //     printf("%d %c ", cartas2[c].valor , cartas2[c].naipe);
-        // }
-        // printf("\n");
         bubblesort_naipe(5,cartas2);
-        for(int c = 0; c<5; c++){
-
-            printf("%d %c ", cartas2[c].valor , cartas2[c].naipe);
-        }
-        printf("\n \n");
 
         mao1 = encontra_mao(cartas1);
         mao2 = encontra_mao(cartas2);

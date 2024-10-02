@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/202419050220/Downloads/ALG_PROG2/aulas/trabalho",
-      "program": "/home/202419050220/Downloads/ALG_PROG2/aulas/trabalho/build/Debug/outDebug",
+      "cwd": "/home/202419050220/Imagens/ALG_PROG2/aulas/trabalho",
+      "program": "/home/202419050220/Imagens/ALG_PROG2/aulas/trabalho/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
