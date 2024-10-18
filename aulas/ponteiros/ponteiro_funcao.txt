@@ -1,0 +1,9 @@
+assim como o ponteiro aponta para tipos especificos, ponteiros para funções tambem apontam para
+fuções especificas, que tem seus parametros e tipo de retorno definido
+
+ex:
+    int (*p)(int,float) --> esse ponteiro aponta para uma função que retorna inteiro, e recebe dois parametros, primeiro int e o segundo float.
+
+    p = funcao;
+
+    p = (*p)(2,5.5)
