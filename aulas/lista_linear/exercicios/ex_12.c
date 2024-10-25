@@ -31,20 +31,15 @@ for (p = lst; p != NULL; p = p->prox)
 printf("%d\n", p->valor);
 }
 
-int compara_listas(celula *lst1, celula *lst2){
-    celula *p,*busca;
-    int resul = 1;
-    p = lst1->prox;
-    while(p != NULL){
-        busca = busca_C(p->valor , lst2);
-        p = p->prox;
-        if(busca == NULL){
-            resul = -1;
-        }
+void concatena(celula *lst1 , celula *lst2){
+    celula *p1,*p2;
+    p1 = lst1;
+    p2 = lst2;
+    for (p2 != NULL; p2 = p2->prox;){
+    insere_C(p2->valor , p1);
     }
-    return resul;
+    free(p2);
 }
-
 
 int main() {
     int result,n1,n2,i = 0,valor;
@@ -60,7 +55,6 @@ int main() {
     scanf("%d",&n1);
     printf("Digite o numero de elementos da segunda lista: ");
     scanf("%d",&n2);
-    if(n1 == n2){
         while(i<n1){
             scanf("%d",&valor);
             insere_C(valor,lista1);
@@ -72,17 +66,7 @@ int main() {
             insere_C(valor,lista2);
             i++;
         }
-
-
-        result = compara_listas(lista1,lista2);
-        if(result < 0){
-            printf("Diferentes\n");
-        } else{
-            printf("Iguais\n");
-        }
-    }
-    else{
-        printf("Diferentes\n");
-    }
-    imprime_lista(lista1->prox);
+        concatena(lista1,lista2);
+        printf("__________________________________________________");
+        imprime_lista(lista1);
 }
