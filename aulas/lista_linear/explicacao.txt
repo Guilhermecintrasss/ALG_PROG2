@@ -4,3 +4,11 @@ registro, e apontará para a proxima ponsição.
 O ponteiro que apontara para a proxima posição é o do REGISTRO, e não o que eu uso como base que aponta para a posição para fazer alterações.
 Por isso, o ponteiro usado para fazer alterações sempre apontara para o ponteiro do registro, que apontara para a proxima posição, por isso geralmente
 se usara o endereço do registro anterior que quero alterar, para assim apontar para a PROXIMA posição.
+
+[.] = ponteiro para a proxima posição
+
+[.] --> [1][.] --> [2][.] --> [5][.] --> NULL (Lista sem cabeça)
+
+[.] --> [vazio][.] --> [1][.] --> [2][.] --> [5][.] --> NULL
+
+dentro das funções, usamos como parametro ponteiros que apontam para esses registros.
