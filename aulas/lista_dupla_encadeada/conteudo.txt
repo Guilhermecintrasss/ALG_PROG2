@@ -1,0 +1,4 @@
+É uma lista com registro com dois ponteiros, um que aponta para o proximo elemento, e um ponteiro que aponta pro anterior
+(o primeiro elemento da lista terá um ponteiro que aponta para o anterior, que sera Null)
+(o ultimo elemento da lista terá um ponteiro que aponta para o proximo tambem, que sera Null)
+
